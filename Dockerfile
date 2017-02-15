@@ -29,15 +29,14 @@ ENV JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-amd64
 RUN apt-get update && apt-get install -y \
     ipython \
     ipython-notebook  \
+    python-setuptools \
     python-matplotlib \
     python-nose   \
     python-numpy  \
-    python-pandas \ 
+    python-pandas \
     python-pip    \
     python-scipy  \
     python-sympy 
-
-
 
 
 ##################################################
@@ -64,8 +63,6 @@ ENV PIG_HOME=/usr/local/apache/pig
 ENV PATH=$PATH:$PIG_HOME/bin
 
 
-
-
 ##################################################
 ## Spark
 ##################################################
@@ -88,9 +85,6 @@ RUN tar -xvf spark-* && \
 #-------------------------------------
 ENV SPARK_HOME=/usr/local/apache/spark
 ENV PATH=$PATH:$SPARK_HOME/bin
-
-
-
 
 
 ##################################################
@@ -117,9 +111,6 @@ RUN apt-get update && apt-get install -y \
 RUN mkdir -p /data/db
 
 
-
-
-
 ##################################################
 ## Node
 ##################################################
@@ -135,9 +126,6 @@ RUN apt-get update && apt-get install -y \
 #-- Config 
 #-------------------------------------
 RUN ln -s `which nodejs` /usr/bin/node
-
-
-
 
 
 ##################################################
@@ -158,10 +146,6 @@ RUN add-apt-repository ppa:ubuntugis/ppa && \
     apt-get update && \
     apt-get install -y gdal-bin
  
-
-
-
-
 
 ##################################################
 ## Hands-On
@@ -185,6 +169,10 @@ RUN pip install jupyter \
     plotly
 
 
+##################################################
+## Final Config
+##################################################
 
+WORKDIR /root
 
 
