@@ -7,8 +7,9 @@ Docker container and material for the course [Big Data Visualization](http://esp
 
 ```sh
 git clone https://github.com/javieraespinosa/dxlab-dataviz.git
+
 cd dxlab-dataviz
-export DXLAB_HOME=$(pwd)  
+DXLAB_HOME=$(pwd)  
 
 docker run       \
    -v DXLAB_HOME:/root/  \
