@@ -3,16 +3,21 @@
 
 Docker container and material for the course [Big Data Visualization](http://espinosa-oviedo.com/big-data-visualization). 
 
-### Installation & Execution
+### Installation
 
 ```sh
-git clone https://github.com/javieraespinosa/dxlab-dataviz.git
+docker pull dxlab/dataviz
 
+git clone https://github.com/javieraespinosa/dxlab-dataviz.git
 cd dxlab-dataviz
 rm README.md Dockerfile
 
-DXLAB_HOME=$(pwd)  
+DXLAB_HOME=$(pwd)
+```
 
+### Execution
+
+```sh
 docker run       \
    -v $DXLAB_HOME:/root/  \
    -p 8008:8008  \
