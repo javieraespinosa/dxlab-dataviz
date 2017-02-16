@@ -175,11 +175,12 @@ RUN pip install jupyter \
 
 
 ##################################################
-## Final Config
+## Cleaning
 ##################################################
 
+RUN rm -r /root/tmp
 WORKDIR /root
 
-RUN rm -r tmp
+
 
 
