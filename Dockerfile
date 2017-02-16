@@ -179,6 +179,7 @@ RUN pip install jupyter \
 ##################################################
 
 RUN rm -r /root/tmp
+
 WORKDIR /root
 
 
