@@ -38,9 +38,10 @@ RUN apt-get update && apt-get install -y \
     python-sympy 
 
 
-# Replace with apt-get install -y python-pip 
+# Replace with "apt-get install -y python-pip" in the future
 RUN curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py" && \
-    python get-pip.py  
+    python get-pip.py && \
+    rm     get-pip.py 
 
 
 ##################################################
@@ -178,5 +179,7 @@ RUN pip install jupyter \
 ##################################################
 
 WORKDIR /root
+
+RUN rm -r tmp
 
 
