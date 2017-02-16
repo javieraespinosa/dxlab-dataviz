@@ -12,7 +12,7 @@ cd dxlab-dataviz
 DXLAB_HOME=$(pwd)  
 
 docker run       \
-   -v DXLAB_HOME:/root/  \
+   -v $DXLAB_HOME:/root/  \
    -p 8008:8008  \
    -p 8888:8888  \
    -p 27021-27023:27021-27023  \
