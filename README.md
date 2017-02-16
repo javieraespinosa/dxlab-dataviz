@@ -18,7 +18,7 @@ Configuration for running all exercises:
 ```sh
 # Folder containing the hands-on material
 cd dxlab-dataviz
-export DXLAB_HOME=(pwd)  
+export DXLAB_HOME=$(pwd)  
 
 docker run       \
    -v DXLAB_HOME:/root/  \
