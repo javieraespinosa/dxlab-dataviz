@@ -13,7 +13,7 @@ git clone https://github.com/javieraespinosa/dxlab-dataviz.git
 
 ### Execution
 
-Configure environment for all exercises: 
+Configuration for running all exercises: 
 
 ```sh
 # Folder containing the hands-on material
