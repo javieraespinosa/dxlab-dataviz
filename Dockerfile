@@ -1,7 +1,7 @@
 
 ##################################################
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-## Big Data Lab 
+## Big Data Lab
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ##################################################
 
@@ -13,12 +13,15 @@ MAINTAINER Javier Espinosa <javier.espinosa@bsc.es>
 ## Developer Tools 
 ##################################################
 
+#-------------------------------------
+#-- Basic Tools + Java 
+#-------------------------------------
 RUN apt-get update && apt-get install -y \
     build-essential \
+    openjdk-7-jdk   \
     curl  \
     git   \
-    jq \
-    openjdk-7-jdk \
+    jq    \
     nano  \
     ssh   \
     unzip \
@@ -26,22 +29,35 @@ RUN apt-get update && apt-get install -y \
 
 ENV JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-amd64
 
-RUN apt-get update && apt-get install -y \
-    ipython \
-    ipython-notebook  \
-    python-setuptools \
-    python-matplotlib \
-    python-nose   \
-    python-numpy  \
-    python-pandas \
-    python-scipy  \
-    python-sympy 
 
-
-# Replace with "apt-get install -y python-pip" in the future
-RUN curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py" && \
+#-------------------------------------
+#-- Python & Libs
+#-------------------------------------
+RUN apt-get update && apt-get install -y python-dev && \
+    curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py" && \
     python get-pip.py && \
-    rm     get-pip.py 
+    rm get-pip.py 
+
+RUN pip install ipython \
+    setuptools \
+    matplotlib \
+    nose   \
+    numpy  \
+    pandas \
+    scipy  \
+    sympy 
+
+
+#-------------------------------------
+#-- SSH 
+#-------------------------------------   
+RUN apt-get update && apt-get -y install openssh-server && \
+    mkdir /var/run/sshd && \
+    echo 'root:root' |chpasswd && \
+    sed -ri 's/^PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config && \
+    sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config && \
+    /usr/sbin/sshd
+
 
 
 ##################################################
@@ -51,7 +67,7 @@ RUN curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py" && \
 #-------------------------------------
 #-- Download 
 #-------------------------------------
-RUN wget http://apache.rediris.es/pig/latest/pig-0.16.0.tar.gz
+RUN wget http://apache.rediris.es/pig/latest/pig-0.17.0.tar.gz
 
 #-------------------------------------
 #-- Install
@@ -75,7 +91,7 @@ ENV PATH=$PATH:$PIG_HOME/bin
 #-------------------------------------
 #-- Download 
 #-------------------------------------
-RUN wget http://d3kbcqa49mib13.cloudfront.net/spark-1.6.2-bin-hadoop2.6.tgz
+RUN wget https://d3kbcqa49mib13.cloudfront.net/spark-2.1.1-bin-hadoop2.7.tgz
 
 #-------------------------------------
 #-- Install
@@ -152,6 +168,7 @@ RUN add-apt-repository ppa:ubuntugis/ppa && \
     apt-get install -y gdal-bin
  
 
+
 ##################################################
 ## Hands-On
 ##################################################
@@ -181,7 +198,4 @@ RUN pip install jupyter \
 RUN rm -r /root/tmp
 
 WORKDIR /root
-
-
-
 
