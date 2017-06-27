@@ -20,6 +20,7 @@ DXLAB_HOME=$(pwd)
 ```sh
 docker run       \
    -v $DXLAB_HOME:/root/  \
+   -p 22:22      \
    -p 8008:8008  \
    -p 8888:8888  \
    -p 27021-27023:27021-27023  \
